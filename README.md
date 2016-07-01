@@ -1,1 +1,1 @@
-# eclipseLinkTest
+To easily test eclipselink features from a basic j2se app.
