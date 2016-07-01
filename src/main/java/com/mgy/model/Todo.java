@@ -31,7 +31,7 @@ public class Todo {
 
   @Override
   public String toString() {
-    return "Todo [summary=" + summary + ", description=" + description
+    return "Todo [id=" + id + ", summary=" + summary + ", description=" + description
         + "]";
   }
 
