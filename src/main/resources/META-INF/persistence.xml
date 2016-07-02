@@ -18,6 +18,13 @@
             <property name="javax.persistence.jdbc.user" value="test" />
             <property name="javax.persistence.jdbc.password" value="test" />
 
+            <!-- Show sql queries in log -->
+            <property name="eclipselink.logging.level" value="FINE"/>
+
+            <!-- Disable shared cache -->
+            <!--property name="eclipselink.cache.shared.default" value="false"/-->
+
+
             <!-- EclipseLink should create the database schema automatically -->
             <property name="eclipselink.ddl-generation" value="create-tables" />
             <property name="eclipselink.ddl-generation.output-mode" value="database" />
