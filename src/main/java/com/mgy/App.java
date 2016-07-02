@@ -9,8 +9,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Hello world!
- *
+ * Commandline app
  */
 public class App 
 {

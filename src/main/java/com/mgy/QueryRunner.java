@@ -20,7 +20,7 @@ public class QueryRunner {
 
         Query q = em.createQuery(queryText);
         List resultList = q.getResultList();
-        
+
         System.out.println("Results:");
         for (Object o : resultList) {
             System.out.println(o);
