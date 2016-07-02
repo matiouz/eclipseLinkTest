@@ -1,0 +1,20 @@
+Surprenant car alors qu'on recrée nouvelle factory a chaque requete (j'ai testé, l id de factory est different a chaque fois), le cache est bien conservé d'une requete a l autre:
+Il refait requete SQL a chaque fois mais si pour un obj deja dans le cache, on modifie un champ direct en BD, l objet retourné ne contient pas ces modifs.
+Pourtant, d'apres https://wiki.eclipse.org/EclipseLink/Examples/JPA/Caching :
+"The shared cache exists for the duration of the persistence unit (EntityManagerFactory, or server) and is shared by all EntityManagers and users of the persistence unit."
+
+En tous cas, on constate bien que si on desactive le cache dans persistence.xml, cette fois les objets retournés contiennent bien les modifs faites direct en BD
+
+En fait, le lien suivant explique plus en details: http://www.eclipse.org/eclipselink/documentation/2.4/concepts/cache001.htm
+There is a separate persistence unit cache for each unique persistence unit name.
+Although the cache is conceptually stored with the EntityManagerFactory, two factories with the same persistence unit name will share the same cache
+(and effectively be the same persistence unit instance).
+If the same persistence unit is deployed in two separate applications in Java EE, their full persistence unit name will normally still be unique, and they will use separate caches.
+Certain persistence unit properties, such as data-source, database URL, user, and tenant id can affect the unique name of the persistence unit,
+and result in separate persistence unit instances and separate caches.
+The eclipselink.session.name persistence unit property can be used to force two persistence units to resolve to the same instance and share a cache.
+
+Sample queries:
+INSERT INTO todo VALUES (30, 'description 30', 'summary 30');
+UPDATE todo SET description = 'description 6' WHERE id = 10;
+SELECT * FROM todo;
